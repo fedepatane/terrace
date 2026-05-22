@@ -1,0 +1,15 @@
+# binaries
+arbitrage-bot
+
+# go build cache
+*.test
+*.out
+
+# environment files
+.env
+.env.local
+
+# IDE
+.idea/
+.vscode/
+*.swp

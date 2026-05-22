@@ -1,0 +1,42 @@
+# Ethereum node connections
+# Pueden sobreescribirse con env vars: ETH_WS_URL, ETH_RPC_URL
+ethereum:
+  ws_url: "wss://ethereum.publicnode.com"
+  rpc_url: "https://ethereum.publicnode.com"
+  reconnect_delay: 1s
+  max_backoff: 30s
+  ping_interval: 20s
+  read_timeout: 35s
+
+# Configuración compartida del CEX (Binance)
+binance:
+  base_url: "https://api.binance.com"
+  depth: 100
+
+# Parámetros de detección de arbitraje
+# Pueden sobreescribirse con env vars: MIN_PROFIT_PCT, GAS_LIMIT_SWAP
+arbitrage:
+  trade_sizes_base: [1.0, 10.0, 100.0]
+  min_profit_pct: 0.3
+  gas_limit_swap: 200000
+  cex_fee_rate: 0.001
+
+# Pares de trading a monitorear
+# Para agregar un par nuevo, agregá una entrada con sus datos de contrato
+pairs:
+  - name: "ETH-USDC"
+    cex_symbol: "ETHUSDC"
+    token_in_address: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"  # WETH
+    token_out_address: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"  # USDC
+    token_in_decimals: 18
+    token_out_decimals: 6
+    pool_fee: 3000  # 0.3%
+
+  # Ejemplo de cómo agregar BTC-USDC 
+  # - name: "BTC-USDC"
+  #   cex_symbol: "BTCUSDC"
+  #   token_in_address: "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599"  # WBTC
+  #   token_out_address: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48" # USDC
+  #   token_in_decimals: 8
+  #   token_out_decimals: 6
+  #   pool_fee: 3000
