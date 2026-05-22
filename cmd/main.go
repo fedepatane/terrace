@@ -10,6 +10,8 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/joho/godotenv"
+
 	"github.com/fpatane/arbitrage-bot/internal/arbitrage"
 	"github.com/fpatane/arbitrage-bot/internal/cex"
 	"github.com/fpatane/arbitrage-bot/internal/config"
@@ -21,6 +23,11 @@ func main() {
 	slog.SetDefault(slog.New(slog.NewTextHandler(os.Stderr, &slog.HandlerOptions{
 		Level: slog.LevelInfo,
 	})))
+
+	// Load .env file if present — silently ignored if it doesn't exist.
+	if err := godotenv.Load(); err == nil {
+		slog.Info(".env file loaded")
+	}
 
 	cfgPath := "config.yaml"
 	if len(os.Args) > 1 {

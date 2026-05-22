@@ -57,14 +57,14 @@ internal/
 ## Requirements
 
 - Go 1.21+
-- Access to an Ethereum node (public endpoints work on free tier)
 
 ## Setup
 
 ```bash
-git clone <repo>
-cd arbitrage-bot
+git clone https://github.com/fedepatane/terrace
+cd terrace
 go mod tidy
+cp .env.example .env
 ```
 
 ## Configuration
@@ -109,14 +109,11 @@ Environment variables take priority over the config file:
 ## Running
 
 ```bash
-# with config file
+# default — reads .env automatically, no extra steps needed
 go run cmd/main.go
 
-# with custom config path
+# with a custom config path
 go run cmd/main.go /path/to/config.yaml
-
-# with environment variables
-ETH_WS_URL=wss://mainnet.infura.io/ws/v3/KEY go run cmd/main.go
 
 # build binary
 go build -o arbitrage-bot cmd/main.go
